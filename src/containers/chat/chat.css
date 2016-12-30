@@ -31,12 +31,13 @@
 
 .button {
     position: absolute;
-    top: 0.85em;
-    right: 1.5em;
+    top: 50%;
+    right: 1.2em;
     background: var(--primary);
     border: none;
     border-radius: 0;
     width: 3em;
-    height: 3em;
+    height: 65%;
     color: white;
+    transform: translate(0, -50%);
 }
