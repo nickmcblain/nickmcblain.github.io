@@ -1,0 +1,3 @@
+.projects {
+    composes: container from '../../common/layout.css';
+}

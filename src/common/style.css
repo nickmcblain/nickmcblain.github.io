@@ -1,0 +1,42 @@
+@import './colours.css';
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Helvetica Neue';
+    font-weight: 200;
+    color: var(--darkgrey);
+}
+
+body > div, body > div > div {
+    height: inherit;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 0;
+    color: white;
+    font-weight: 200;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    font-weight: 200;
+}
+
+header {
+    font-size: 2.25em;
+    color: var(--primary);
+    margin-bottom: 0.6em;
+}

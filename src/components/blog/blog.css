@@ -1,0 +1,9 @@
+@import '../../common/colours.css';
+
+.blog {
+    background: var(--offwhite);
+}
+
+.container {
+    composes: container from '../../common/layout.css';
+}

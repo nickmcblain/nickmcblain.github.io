@@ -1,0 +1,16 @@
+.container {
+    max-width: 71.25rem;
+    margin: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+section {
+    padding: 2em 0 1em 0;
+}
+
+@media(min-width: 48em) {
+    section {
+        padding: 3em 0 4em 0;
+    }
+}

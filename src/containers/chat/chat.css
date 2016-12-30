@@ -1,0 +1,42 @@
+@import '../../common/colours.css';
+
+.messages {
+    max-width: 45rem;
+    background: white;
+    padding: 1em;
+    height: 20rem;
+    overflow-y: scroll;
+}
+
+.inputField {
+    position: relative;
+    max-width: 45rem;
+    background: white;
+    padding: 1em;
+    border-top: 2px solid var(--offwhite);
+}
+
+.input {
+    border: none;
+    font-size: 1em;
+    width: 93%;
+    color: var(--darkgrey);
+    font-weight: 200;
+}
+
+.input:focus {
+    outline: none;
+    outline-offset: 0;
+}
+
+.button {
+    position: absolute;
+    top: 0.85em;
+    right: 1.5em;
+    background: var(--primary);
+    border: none;
+    border-radius: 0;
+    width: 3em;
+    height: 3em;
+    color: white;
+}

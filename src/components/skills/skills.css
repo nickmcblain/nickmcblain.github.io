@@ -1,0 +1,45 @@
+@import '../../common/colours.css';
+
+.container {
+    composes: container from '../../common/layout.css';
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    display: inline-block;
+}
+
+.list:first-of-type {
+    margin-right: 1em;
+}
+
+@media(min-width: 71.25rem) {
+    .list:first-of-type {
+        margin-right: 4em;
+    }
+}
+
+@media(min-width: 48rem) {
+    .list {
+        width: auto;
+        display: inline-block;
+    }
+
+    .list:first-of-type {
+        margin-right: 3em;
+    }
+}
+
+.label {
+    background: var(--darkgrey);
+    padding: 0.3em 0.75em;
+    color: white;
+    display: inline-block;
+    border: 1px solid var(--darkgrey);
+    font-weight: 200;
+    font-size: 1rem;
+    margin-top: 0;
+}

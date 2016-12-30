@@ -1,0 +1,13 @@
+@import '../../common/colours.css';
+
+.contact {
+    background: var(--primary);
+}
+
+.container {
+    composes: container from '../../common/layout.css';
+}
+
+.header {
+    color: white;
+}

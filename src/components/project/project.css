@@ -1,0 +1,61 @@
+@import '../../common/colours.css';
+
+.project {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.5em;
+}
+
+@media(min-width: 48em) {
+    .project {
+        width: 49%;
+    }
+
+    .project:nth-child(odd) {
+        margin-right: 2%;
+    }
+
+    .project:nth-child(3), .project:nth-child(4) {
+        margin-bottom: 0;
+    }
+}
+
+.info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--primary);
+    padding: 3em;
+    color: white;
+    transform: translateX(-101%);
+    transition: 0.2s ease-in-out;
+}
+
+.info p {
+    text-align: left;
+    margin: 0;
+    font-size: 1em;
+    margin-bottom: 0.2em;
+}
+
+.project:hover > .info {
+    transform: translateX(0);
+    transition: 0.3s ease-in-out;
+}
+
+.figure {
+    margin: 0;
+}
+
+.image {
+    width: 100%;
+}
+
+.caption {
+    padding: 1em;
+    background: #F2F2F2;
+    margin-top: -5px;
+}

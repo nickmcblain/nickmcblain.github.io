@@ -1,0 +1,25 @@
+@import '../../common/colours.css';
+
+.navigation {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background: var(--primary);
+    width: 100%;
+    padding: 1.5em 0;
+}
+
+.list {
+    composes: container from '../../common/layout.css';
+    list-style: none;
+}
+
+.item {
+    display: inline-block;
+    margin-right: 2.5rem;
+    cursor: pointer;
+}
+
+.item:last-of-type {
+    margin-right: 0;
+}

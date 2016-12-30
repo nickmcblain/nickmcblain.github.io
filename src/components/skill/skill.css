@@ -1,0 +1,52 @@
+@import '../../common/colours.css';
+
+.skill {
+    position: relative;
+    margin-bottom: 1em;
+}
+
+.name {
+    display: inline-block;
+    width: 10rem;
+    margin: 0;
+    vertical-align: super;
+}
+
+.dot {
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 0.75em;
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+.dot:last-of-type {
+    margin-right: 0;
+}
+
+.dots {
+    display: inline-block;
+    width: 20em;
+}
+
+@media(min-width: 75.3125em) {
+    .name {
+        width: 13em;
+    }
+}
+
+@media(min-width: 48em) {
+    .dots {
+        display: inline-block;
+    }
+}
+
+.filled {
+    composes: dot;
+    background: var(--primary);
+}
+
+.empty {
+    composes: dot;
+    background: var(--darkgrey);
+}

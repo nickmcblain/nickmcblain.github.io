@@ -1,0 +1,26 @@
+@import '../../common/colours.css';
+
+.company {
+    background: var(--darkgrey);
+    padding: 0.3em 0.75em;
+    color: white;
+    display: inline-block;
+    border: 1px solid var(--darkgrey);
+}
+
+.title {
+    padding: 0.3em 0.75em;
+    border: 1px solid var(--darkgrey);
+    display: inline-block;
+}
+
+.description {
+    text-align: left;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.image {
+    width: 10em;
+    margin-bottom: 1em;
+}

@@ -1,0 +1,26 @@
+@import '../../common/colours.css';
+
+.wrapper {
+    position: relative;
+    clear: both;
+}
+
+.message {
+    padding: 0.3em 0.5em;
+    display: inline-block;
+    margin: 0.5em 0;
+    max-width: 55%;
+}
+
+.user {
+    composes: message;
+    background: var(--primary);
+    color: white;
+    float: right;
+}
+
+.reply {
+    composes: message;
+    background: var(--darkgrey);
+    color: white;
+}

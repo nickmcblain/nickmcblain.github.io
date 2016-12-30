@@ -1,0 +1,9 @@
+@import '../../common/colours.css';
+
+.experience {
+    background: var(--offwhite);
+}
+
+.container {
+    composes: container from '../../common/layout.css';
+}

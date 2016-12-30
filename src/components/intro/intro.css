@@ -1,0 +1,19 @@
+@import '../../common/colours.css';
+
+.intro {
+    background: var(--primary);
+    position: relative;
+    height: 100%;
+    padding: 0;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image {
+    width: 35em;
+}
