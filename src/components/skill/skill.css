@@ -5,6 +5,10 @@
     margin-bottom: 1em;
 }
 
+.skill:last-of-type {
+    margin-bottom: 0;
+}
+
 .name {
     display: inline-block;
     width: 10rem;
