@@ -7,7 +7,14 @@ html, body {
     width: 100%;
     font-family: 'Helvetica Neue';
     font-weight: 200;
+    font-size: 14px;
     color: var(--darkgrey);
+}
+
+@media(min-width: 48em) {
+    body {
+        font-size: 16px;
+    }
 }
 
 body > div, body > div > div {
@@ -18,8 +25,15 @@ h1 {
     font-size: 3em;
     text-align: center;
     margin-bottom: 0;
+    margin-top: 0.25em;
     color: white;
     font-weight: 200;
+}
+
+@media(min-width: 48em) {
+    h1 {
+        margin-top: 1em;
+    }
 }
 
 a {

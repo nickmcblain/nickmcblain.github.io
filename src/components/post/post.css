@@ -9,21 +9,11 @@
     margin-right: 0;
 }
 
-@media(min-width: 75.3125em) {
-    .post {
-        width: 23rem;
-        margin-bottom: 0;
-    }
-}
-
 @media(min-width: 48em) {
     .post {
         margin-right: 1em;
-        max-width: 48%;
-    }
-
-    .post:last-of-type {
         margin-bottom: 0;
+        width: 22rem;
     }
 }
 

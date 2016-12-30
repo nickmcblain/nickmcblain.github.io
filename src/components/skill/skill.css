@@ -29,12 +29,6 @@
     width: 20em;
 }
 
-@media(min-width: 75.3125em) {
-    .name {
-        width: 13em;
-    }
-}
-
 @media(min-width: 48em) {
     .dots {
         display: inline-block;
