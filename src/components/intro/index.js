@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './intro.css';
-import vectorHead from '../../resources/nick-new.svg';
+import vectorHead from '../../resources/images/nick-new.svg';
 
 const Intro = () => (
     <section className={style.intro}>

@@ -2,14 +2,6 @@ import React from 'react';
 import style from './skill.css';
 
 const Skill = ({ name, value }) => {
-    // const dots = () => {
-    //     let remaining = 10 - value;
-
-    //     for(let i = 0; i < value; i++) {
-    //         return <div></div>
-    //     }
-    // };
-
     const prepareArray = (remaining) => {
         const arrayValues = [];
 
@@ -27,7 +19,6 @@ const Skill = ({ name, value }) => {
     const arrayValues = prepareArray(10 - value);
 
     const dots = arrayValues.map((item, index) => {
-        console.log(item);
         return (
             <span key={index} className={ item ? style.filled : style.empty } />
         );

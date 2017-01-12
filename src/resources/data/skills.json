@@ -1,0 +1,62 @@
+{
+    "languages": [
+        {
+            "title": "Javascript",
+            "value": 9
+        },
+        {
+            "title": "Javascript ES6",
+            "value": 8
+        },
+        {
+            "title": "HTML5/CSS3",
+            "value": 8
+        },
+        {
+            "title": "Java",
+            "value": 7
+        },
+        {
+            "title": "SQL",
+            "value": 7
+        },
+        {
+            "title": "Python",
+            "value": 5
+        },
+        {
+            "title": "PHP",
+            "value": 5
+        },
+        {
+            "title": "C/C++",
+            "value": 4
+        }
+    ],
+    "frameworks": [
+        {
+            "title": "AngularJS",
+            "value": 9
+        },
+        {
+            "title": "ReactJS",
+            "value": 8
+        },
+        {
+            "title": "React Native",
+            "value": 7
+        },
+        {
+            "title": "Wordpress",
+            "value": 7
+        },
+        {
+            "title": "Angular2",
+            "value": 6
+        },
+        {
+            "title": "Ionic/Ionic 2",
+            "value": 6
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Project from '../project';
-import activation from '../../resources/Activation.png';
+import activation from '../../resources/images/Activation.png';
 import style from './projects.css';
 
 const Projects = () => {

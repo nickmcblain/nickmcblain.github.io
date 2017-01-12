@@ -15,6 +15,11 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin('style.css'),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production')
+			}
+		}),
 		new webpack.optimize.UglifyJsPlugin()
 	],
 	module: {
@@ -35,6 +40,10 @@ module.exports = {
 				test: /\.(png|jpg|svg)$/, 
 				loader: 'url-loader?name=images/[name].[ext]' 
 			},
+			{
+				test: /\.json$/,
+				loader: 'json-loader'
+			}
 		],
 		postcss: function() {
 			return [
