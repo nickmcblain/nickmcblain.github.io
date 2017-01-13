@@ -64,6 +64,10 @@
         padding-bottom: 0;
     }
 
+    .list.show {
+        margin-top: 0;
+    }
+
     .item {
         display: inline-block;
         margin: 0 2.5rem 0 0;
