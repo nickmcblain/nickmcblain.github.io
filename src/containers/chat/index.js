@@ -12,11 +12,6 @@ const stubs = [
         time: '14:49',
         message: 'Do you prefer Angular2 or ReactJS?',
         user: true
-    },
-    {
-        time: '14:50',
-        message: 'I prefer ReactJS due to it being more flexible, I have used Angular2 a lot and do still love the framework',
-        user: false
     }
 ];
 
