@@ -18,6 +18,11 @@
     width: 20em;
 }
 
+.comingSoon {
+    text-align: center;
+    color: white;
+}
+
 @media(min-width: 48em) {
     .image {
         width: 35em;

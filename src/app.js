@@ -15,13 +15,13 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Navigation routes={ROUTES} />
+				{/* <Navigation routes={ROUTES} /> */}
 				<Intro />
-				<Projects />
+				{/* <Projects />
 				<Experience />
 				<Skills />
 				<Blog />
-				<Contact />
+				<Contact /> */}
 			</div>
 		);
 	}

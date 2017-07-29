@@ -7,6 +7,7 @@ const Intro = () => (
         <article className={style.content}>
             <img src={vectorHead} className={style.image} />
             <h1><b>Hi,</b> I'm Nick</h1>
+            <p className={style.comingSoon}>Coming soon.</p>
         </article>
     </section>
 );
