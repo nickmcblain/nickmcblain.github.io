@@ -1,7 +1,5 @@
 node_modules
 .DS_Store
-dist
-dist-ssr
 *.local
 count.txt
 .env
@@ -11,3 +9,5 @@ count.txt
 .output
 .vinxi
 todos.json
+skills/**/references/
+skills/dist/

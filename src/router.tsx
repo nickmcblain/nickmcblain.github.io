@@ -4,12 +4,17 @@ import { createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
 
 // Create a new router instance
-export const getRouter = () => {
-  const router = createRouter({
-    routeTree,
-    scrollRestoration: true,
-    defaultPreloadStaleTime: 0,
-  })
+export const router = createRouter({
+  routeTree,
+  basepath: import.meta.env.BASE_URL,
+  scrollRestoration: true,
+  defaultPreloadStaleTime: 0,
+})
 
-  return router
+export const getRouter = () => router
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
 }
