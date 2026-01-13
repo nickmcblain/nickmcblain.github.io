@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -82,6 +83,7 @@ const projects = [
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const featuredWriting = writingItems.slice(0, 3)
   const navItems = navLinks.flatMap((link, index) => [
     <a
@@ -98,6 +100,28 @@ function App() {
     ) : null,
   ])
 
+  useEffect(() => {
+    const stored = window.localStorage.getItem('theme')
+    const systemPrefersDark = window.matchMedia?.('(prefers-color-scheme: dark)')
+      .matches
+    const initialTheme =
+      stored === 'light' || stored === 'dark'
+        ? stored
+        : systemPrefersDark
+          ? 'dark'
+          : 'light'
+
+    setTheme(initialTheme)
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark')
+  }, [])
+
+  const handleThemeToggle = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark'
+    setTheme(nextTheme)
+    document.documentElement.classList.toggle('dark', nextTheme === 'dark')
+    window.localStorage.setItem('theme', nextTheme)
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-6 py-4">
@@ -113,29 +137,33 @@ function App() {
                 {navItems}
               </nav>
             </div>
-            <a
-              href={contactLinks[0].href}
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'sm' }),
-                'shrink-0 text-[0.6rem] uppercase tracking-[0.2em]',
-              )}
-            >
-              Get in touch
-            </a>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleThemeToggle}
+                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                className={cn(
+                  buttonVariants({ variant: 'outline', size: 'icon-sm' }),
+                  'shrink-0',
+                )}
+              >
+                <span className="sr-only">Toggle theme</span>
+                {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+              </button>
+            </div>
           </div>
         </header>
 
         <Separator />
 
         <main className="flex flex-col gap-16">
-          <section id="about" className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <section
+            id="about"
+            className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] mt-12"
+          >
             <div className="space-y-5">
-              <Badge variant="outline">
-                Product Engineer / Founder / Builder
-              </Badge>
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                I craft product experiences that feel inevitable, calm, and
-                useful.
+                Product Engineer. Founder. Builder.
               </h1>
               <p className="text-sm text-muted-foreground sm:text-base">
                 I help teams ship high-signal software by blending product
@@ -170,7 +198,7 @@ function App() {
               </div>
             </div>
             <Card>
-              <CardHeader>
+              <CardHeader className="border-b border-border">
                 <CardTitle>Now</CardTitle>
                 <CardDescription>
                   What I am focused on right now.
@@ -193,19 +221,72 @@ function App() {
                 </div>
                 <div>
                   <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                    Working on
+                    Current favorite tools
                   </p>
                   <p className="text-foreground">
-                    Lumion (
                     <a
-                      href="https://trylumion.com"
+                      href="https://openai.com/codex"
                       className="underline underline-offset-4"
                       target="_blank"
                       rel="noreferrer"
                     >
-                      trylumion.com
+                      Codex
                     </a>
-                    ), AI-powered workflow automation for energy developers.
+                    ,{' '}
+                    <a
+                      href="https://zed.dev"
+                      className="underline underline-offset-4"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Zed
+                    </a>
+                    ,{' '}
+                    <a
+                      href="https://granola.so"
+                      className="underline underline-offset-4"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Granola
+                    </a>
+                    ,{' '}
+                    <a
+                      href="https://www.notion.so"
+                      className="underline underline-offset-4"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Notion
+                    </a>
+                    ,{' '}
+                    <a
+                      href="https://www.linkedin.com"
+                      className="underline underline-offset-4"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      LinkedIn
+                    </a>
+                    ,{' '}
+                    <a
+                      href="https://clay.com"
+                      className="underline underline-offset-4"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Clay
+                    </a>
+                    ,{' '}
+                    <a
+                      href="https://linear.app"
+                      className="underline underline-offset-4"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Linear
+                    </a>
+                    .
                   </p>
                 </div>
               </CardContent>
@@ -378,6 +459,41 @@ function GitHubIcon({ className }: { className?: string }) {
       fill="currentColor"
     >
       <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48v-1.68c-2.78.6-3.37-1.34-3.37-1.34-.46-1.17-1.12-1.48-1.12-1.48-.92-.62.07-.6.07-.6 1.02.07 1.56 1.05 1.56 1.05.9 1.56 2.36 1.11 2.94.85.1-.65.35-1.1.64-1.35-2.22-.25-4.55-1.11-4.55-4.95 0-1.1.39-2 1.04-2.7-.1-.25-.45-1.27.1-2.65 0 0 .85-.27 2.8 1.03a9.5 9.5 0 0 1 5.1 0c1.95-1.3 2.8-1.03 2.8-1.03.55 1.38.2 2.4.1 2.65.65.7 1.04 1.6 1.04 2.7 0 3.85-2.34 4.7-4.57 4.95.36.3.68.9.68 1.84v2.72c0 .26.18.58.68.48A10 10 0 0 0 12 2Z" />
+    </svg>
+  )
+}
+
+function SunIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  )
+}
+
+function MoonIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
     </svg>
   )
 }
