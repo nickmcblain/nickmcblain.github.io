@@ -102,8 +102,9 @@ function App() {
 
   useEffect(() => {
     const stored = window.localStorage.getItem('theme')
-    const systemPrefersDark = window.matchMedia?.('(prefers-color-scheme: dark)')
-      .matches
+    const systemPrefersDark = window.matchMedia?.(
+      '(prefers-color-scheme: dark)',
+    ).matches
     const initialTheme =
       stored === 'light' || stored === 'dark'
         ? stored
@@ -296,9 +297,6 @@ function App() {
           <section id="projects" className="space-y-6">
             <div className="space-y-2">
               <h2 className="text-xl font-semibold">// Projects</h2>
-              <p className="text-sm text-muted-foreground">
-                Intentional, high-touch product work across strategy and build.
-              </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               {projects.map((project) => (
@@ -338,9 +336,6 @@ function App() {
           <section id="writing" className="space-y-6">
             <div className="space-y-2">
               <h2 className="text-xl font-semibold">// Writing</h2>
-              <p className="text-sm text-muted-foreground">
-                Notes on product craft, shipping velocity, and calm UX.
-              </p>
             </div>
             <div className="grid gap-4 md:grid-cols-3">
               {featuredWriting.map((post) => (

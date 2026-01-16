@@ -1,14 +1,14 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from '@tanstack/react-router'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { writingItems } from "@/lib/writing";
+} from '@/components/ui/card'
+import { writingItems } from '@/lib/writing'
 
-export const Route = createFileRoute("/writing/")({ component: WritingIndex });
+export const Route = createFileRoute('/writing/')({ component: WritingIndex })
 
 function WritingIndex() {
   return (
@@ -19,10 +19,7 @@ function WritingIndex() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
               Writing
             </p>
-            <h1 className="text-2xl font-semibold">Stream of thoughts</h1>
-            <p className="text-sm text-muted-foreground">
-              Product craft, calm UX, and the systems behind shipping.
-            </p>
+            <h1 className="text-2xl font-semibold">Point in time thoughts</h1>
           </div>
           <Link
             to="/"
@@ -56,5 +53,5 @@ function WritingIndex() {
         </div>
       </div>
     </div>
-  );
+  )
 }
