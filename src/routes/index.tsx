@@ -21,8 +21,7 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ]
 
-const profileImageSrc =
-  'https://media.licdn.com/dms/image/v2/D4E03AQEQQ1xKEYXzvg/profile-displayphoto-crop_800_800/B4EZjCXM6WHIAI-/0/1755607519454?e=1769644800&v=beta&t=dPnfji8v18tnT_n2mM89ZeL_6ZLz2OQ2ZdHejmoOcbw'
+const profileImageSrc = `${import.meta.env.BASE_URL}profile.jpeg`
 
 const contactLinks = [
   { label: 'Email', href: 'mailto:hey@nickmc.io', icon: MailIcon },
