@@ -1,14 +1,14 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
-import { WritingTemplate } from "@/components/writing/template";
-import { getWritingBySlug } from "@/lib/writing";
+import { Link, createFileRoute } from '@tanstack/react-router'
+import { WritingTemplate } from '@/components/writing/template'
+import { getWritingBySlug } from '@/lib/writing'
 
-export const Route = createFileRoute("/writing/$slug")({
+export const Route = createFileRoute('/writing/$slug')({
   component: WritingPost,
-});
+})
 
 function WritingPost() {
-  const { slug } = Route.useParams();
-  const post = getWritingBySlug(slug);
+  const { slug } = Route.useParams()
+  const post = getWritingBySlug(slug)
 
   if (!post) {
     return (
@@ -25,8 +25,8 @@ function WritingPost() {
           </Link>
         </div>
       </div>
-    );
+    )
   }
 
-  return <WritingTemplate post={post} />;
+  return <WritingTemplate post={post} />
 }

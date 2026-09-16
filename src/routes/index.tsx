@@ -11,12 +11,22 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { buttonVariants } from '@/components/ui/button'
+import { ShaderBackdrop } from '@/components/shader-backdrop'
+import { ArticleArt } from '@/components/writing/article-art'
 import { cn } from '@/lib/utils'
 import { writingItems } from '@/lib/writing'
+import {
+  capabilities,
+  projects,
+  sideProjects,
+  stack,
+  tools,
+} from '@/lib/site-data'
 
 const navLinks = [
   { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Experience', href: '/work' },
+  { label: 'Startups', href: '#startups' },
   { label: 'Writing', href: '#writing' },
   { label: 'Contact', href: '#contact' },
 ]
@@ -33,51 +43,19 @@ const contactLinks = [
   { label: 'GitHub', href: 'https://github.com/nickmcblain', icon: GitHubIcon },
 ]
 
-const capabilities = [
-  'Product strategy',
-  'Design systems',
-  'Full-stack engineering',
-  'Founder support',
-]
+const labelClasses =
+  'text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground'
 
-const projects = [
-  {
-    title: 'Lumion',
-    url: 'https://trylumion.com',
-    urlLabel: 'trylumion.com',
-    live: true,
-    description:
-      'Automation for energy infrastructure developers to accelerate planning and operations with AI agents.',
-    tags: ['Energy', 'AI', 'Automation'],
-  },
-  {
-    title: 'Volt.io',
-    url: 'https://govolt.io',
-    urlLabel: 'govolt.io',
-    live: false,
-    description:
-      'UK EV charging app using DePIN to reward drivers with crypto for sharing public charging behavior.',
-    tags: ['EV', 'DePIN', 'Crypto'],
-  },
-  {
-    title: 'Orton.io',
-    url: 'https://orton.io',
-    urlLabel: 'orton.io',
-    live: true,
-    description:
-      'Platform and community that helps writers become authors, from idea to audience.',
-    tags: ['Publishing', 'Community', 'Platform'],
-  },
-  {
-    title: 'DonateDoughnut',
-    url: 'https://donatedoughnut.com',
-    urlLabel: 'donatedoughnut.com',
-    live: true,
-    description:
-      'Simple, modern giving platform that streamlines charitable donations.',
-    tags: ['Nonprofit', 'Giving', 'Platform'],
-  },
-]
+const inlineLinkClasses =
+  'underline underline-offset-4 transition-colors hover:decoration-accent-spot'
+
+function SectionTitle({ children }: { children: string }) {
+  return (
+    <h2 className="text-xl font-semibold">
+      <span className="text-accent-spot">//</span> {children}
+    </h2>
+  )
+}
 
 export const Route = createFileRoute('/')({ component: App })
 
@@ -85,13 +63,23 @@ function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const featuredWriting = writingItems.slice(0, 3)
   const navItems = navLinks.flatMap((link, index) => [
-    <a
-      key={link.label}
-      href={link.href}
-      className="transition-colors hover:text-foreground"
-    >
-      {link.label}
-    </a>,
+    link.href.startsWith('/') ? (
+      <Link
+        key={link.label}
+        to={link.href}
+        className="transition-colors hover:text-accent-spot"
+      >
+        {link.label}
+      </Link>
+    ) : (
+      <a
+        key={link.label}
+        href={link.href}
+        className="transition-colors hover:text-accent-spot"
+      >
+        {link.label}
+      </a>
+    ),
     index < navLinks.length - 1 ? (
       <span key={`${link.label}-sep`} className="text-muted-foreground/60">
         |
@@ -101,7 +89,7 @@ function App() {
 
   useEffect(() => {
     const stored = window.localStorage.getItem('theme')
-    const systemPrefersDark = window.matchMedia?.(
+    const systemPrefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)',
     ).matches
     const initialTheme =
@@ -123,8 +111,9 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-6 py-4">
+    <div className="min-h-screen text-foreground">
+      <ShaderBackdrop theme={theme} />
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col gap-4 px-6 py-4">
         <header className="flex flex-col gap-6">
           <div className="flex flex-wrap items-center justify-between gap-6">
             <div className="flex min-w-0 flex-1 items-center gap-4">
@@ -159,16 +148,19 @@ function App() {
         <main className="flex flex-col gap-16">
           <section
             id="about"
-            className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] mt-12"
+            className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]"
           >
             <div className="space-y-5">
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                Product Engineer. Founder. Builder.
+                Product leader. Founder. Engineer.
               </h1>
               <p className="text-sm text-muted-foreground sm:text-base">
-                I help teams ship high-signal software by blending product
-                strategy, design systems, and engineering. My work leans on
-                clarity, obsession with craft, and fast feedback loops.
+                11+ years across engineering, growth and product leadership.
+                Today I build LLM-powered review agents at Lumion.{' '}
+                <Link to="/work" className={inlineLinkClasses}>
+                  Experience
+                </Link>
+                .
               </p>
               <div className="flex flex-wrap gap-2">
                 {capabilities.map((item) => (
@@ -198,105 +190,52 @@ function App() {
               </div>
             </div>
             <Card>
-              <CardHeader className="border-b border-border">
-                <CardTitle>Now</CardTitle>
-                <CardDescription>
-                  What I am focused on right now.
-                </CardDescription>
-              </CardHeader>
               <CardContent className="space-y-4 text-sm text-muted-foreground">
                 <div>
-                  <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                    Focus
-                  </p>
+                  <p className={labelClasses}>Focus</p>
                   <p className="text-foreground">
-                    Energy-tech, AI-workflows, 0-1 products go-to-market.
+                    RAG agents for energy infrastructure, LLM evals and
+                    fine-tuning, 0-1 go-to-market.
                   </p>
                 </div>
                 <div>
-                  <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                    Based
-                  </p>
+                  <p className={labelClasses}>Stack</p>
+                  <p className="text-foreground">{stack}</p>
+                </div>
+                <div>
+                  <p className={labelClasses}>Based</p>
                   <p className="text-foreground">Bristol, UK / New York, US</p>
                 </div>
                 <div>
-                  <p className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                    Current favorite tools
-                  </p>
-                  <p className="text-foreground">
-                    <a
-                      href="https://openai.com/codex"
-                      className="underline underline-offset-4"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Codex
-                    </a>
-                    ,{' '}
-                    <a
-                      href="https://zed.dev"
-                      className="underline underline-offset-4"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Zed
-                    </a>
-                    ,{' '}
-                    <a
-                      href="https://granola.so"
-                      className="underline underline-offset-4"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Granola
-                    </a>
-                    ,{' '}
-                    <a
-                      href="https://www.notion.so"
-                      className="underline underline-offset-4"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Notion
-                    </a>
-                    ,{' '}
-                    <a
-                      href="https://www.linkedin.com"
-                      className="underline underline-offset-4"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      LinkedIn
-                    </a>
-                    ,{' '}
-                    <a
-                      href="https://clay.com"
-                      className="underline underline-offset-4"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Clay
-                    </a>
-                    ,{' '}
-                    <a
-                      href="https://linear.app"
-                      className="underline underline-offset-4"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Linear
-                    </a>
-                    .
-                  </p>
+                  <p className={labelClasses}>Current favorite tools</p>
+                  <div className="mt-1 flex flex-wrap gap-2">
+                    {tools.map((tool) => (
+                      <a
+                        key={tool.label}
+                        href={tool.href}
+                        className="group/tool inline-flex items-center gap-1.5 border border-border bg-background px-2 py-1 text-xs text-foreground transition-colors hover:border-accent-spot"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src={tool.icon}
+                          alt=""
+                          width={14}
+                          height={14}
+                          loading="lazy"
+                          className="h-3.5 w-3.5 rounded-[2px] grayscale transition group-hover/tool:grayscale-0"
+                        />
+                        {tool.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </section>
 
-          <section id="projects" className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-xl font-semibold">// Projects</h2>
-            </div>
+          <section id="startups" className="space-y-6">
+            <SectionTitle>Startups</SectionTitle>
             <div className="grid gap-4 md:grid-cols-2">
               {projects.map((project) => (
                 <Card key={project.title}>
@@ -315,7 +254,10 @@ function App() {
                     {project.live ? (
                       <a
                         href={project.url}
-                        className="text-xs text-muted-foreground underline underline-offset-4"
+                        className={cn(
+                          'text-xs text-muted-foreground',
+                          inlineLinkClasses,
+                        )}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -332,19 +274,63 @@ function App() {
             </div>
           </section>
 
-          <section id="writing" className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-xl font-semibold">// Writing</h2>
+          <section id="open-source" className="space-y-6">
+            <SectionTitle>Open source & side projects</SectionTitle>
+            <div className="divide-y divide-border border-y border-border">
+              {sideProjects.map((project) => (
+                <div
+                  key={project.title}
+                  className="grid gap-2 py-4 sm:grid-cols-[10rem_1fr] sm:gap-6"
+                >
+                  <a
+                    href={project.repo}
+                    className={cn('text-sm font-semibold', inlineLinkClasses)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {project.title}
+                  </a>
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <Badge key={tag} variant="secondary">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
+          </section>
+
+          <section id="writing" className="space-y-6">
+            <SectionTitle>Writing</SectionTitle>
             <div className="grid gap-4 md:grid-cols-3">
               {featuredWriting.map((post) => (
-                <Card key={post.title} size="sm">
+                <Card
+                  key={post.title}
+                  size="sm"
+                  className="group data-[size=sm]:pt-0"
+                >
+                  {post.image ? (
+                    <Link
+                      to="/writing/$slug"
+                      params={{ slug: post.slug }}
+                      aria-label={post.title}
+                    >
+                      <ArticleArt src={post.image} alt="" muted />
+                    </Link>
+                  ) : null}
                   <CardHeader>
                     <CardTitle>
                       <Link
                         to="/writing/$slug"
                         params={{ slug: post.slug }}
-                        className="underline underline-offset-4"
+                        className={inlineLinkClasses}
                       >
                         {post.title}
                       </Link>
@@ -360,7 +346,10 @@ function App() {
             </div>
             <Link
               to="/writing"
-              className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground underline underline-offset-4"
+              className={cn(
+                'text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground',
+                inlineLinkClasses,
+              )}
             >
               View all writing
             </Link>
@@ -370,13 +359,26 @@ function App() {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  // Let's build something calm and effective.
+                  <span className="text-accent-spot">//</span> Let's build
+                  something calm and effective.
                 </CardTitle>
                 <CardDescription>
-                  Reach out if you are shipping a product, raising your quality
-                  bar, or want to collaborate on new ideas.
+                  Reach out if you are building AI products, raising your
+                  quality bar, or want a second pair of hands on 0-1 strategy.
                 </CardDescription>
               </CardHeader>
+              <CardContent className="text-xs text-muted-foreground">
+                I read and ship open source on{' '}
+                <a
+                  href="https://github.com/nickmcblain"
+                  className={cn('text-foreground', inlineLinkClasses)}
+                  target="_blank"
+                  rel="me noreferrer"
+                >
+                  GitHub
+                </a>
+                .
+              </CardContent>
               <CardFooter className="flex flex-wrap gap-2 border-t border-border">
                 {contactLinks.map((link) => (
                   <a
@@ -403,8 +405,8 @@ function App() {
         <Separator />
 
         <footer className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
-          <span>© 2025 Nick McBlain</span>
-          <a href="#about" className="underline underline-offset-4">
+          <span>© 2026 Nick McBlain</span>
+          <a href="#about" className={inlineLinkClasses}>
             Back to top
           </a>
         </footer>

@@ -2,6 +2,7 @@
 title: Sep 2026: The stack moved. The data had to follow.
 summary: Codex got me far. Cursor, Composer 2.5, Grok 4.6, and Grok Bot changed how I work. Bun is the base layer. The real unlock was treating knowledge like code the agents can share.
 date: 2026-09-07
+image: writing/sep-2026-tools-and-okf.jpg
 ---
 
 # Sep 2026: The stack moved. The data had to follow.

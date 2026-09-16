@@ -2,6 +2,7 @@
 title: Feb 2026: PDFs to Structured Truth
 summary: NYISO + PJM interconnection is a document problem. Here’s how I’m turning PDFs, DOCXs, and spreadsheets into a graph agents can cite and use to catch human error early.
 date: 2026-02-02
+image: writing/feb-2026-pdfs-to-structured-truth.jpg
 ---
 
 # Feb 2026: PDFs to Structured Truth

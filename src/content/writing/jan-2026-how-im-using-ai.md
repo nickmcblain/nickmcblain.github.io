@@ -2,6 +2,7 @@
 title: Jan 2026: How I'm using AI
 summary: A candid snapshot of the AI tools and habits shaping my work at Lumion, and the gaps I still want filled.
 date: 2026-01-01
+image: writing/jan-2026-how-im-using-ai.jpg
 ---
 
 # Jan 2026: How I'm using AI
