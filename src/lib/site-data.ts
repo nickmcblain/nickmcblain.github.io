@@ -13,18 +13,30 @@ export const stack =
 const toolIcon = (name: string) =>
   `${import.meta.env.BASE_URL}tools/${name}.png`
 
-export const tools = [
+export type Tool = {
+  label: string
+  href: string
+  icon: string
+  darkInvert?: boolean
+}
+
+export const tools: Array<Tool> = [
   { label: 'Cursor', href: 'https://cursor.com', icon: toolIcon('cursor') },
   {
-    label: 'Claude Code',
-    href: 'https://claude.com/product/claude-code',
-    icon: toolIcon('claude-code'),
+    label: 'Grok Bot',
+    href: 'https://grok.com',
+    icon: toolIcon('grok-bot'),
   },
   { label: 'Codex', href: 'https://openai.com/codex', icon: toolIcon('codex') },
   { label: 'Bun', href: 'https://bun.sh', icon: toolIcon('bun') },
   { label: 'Granola', href: 'https://granola.so', icon: toolIcon('granola') },
   { label: 'Linear', href: 'https://linear.app', icon: toolIcon('linear') },
-  { label: 'Clay', href: 'https://clay.com', icon: toolIcon('clay') },
+  {
+    label: 'Attio',
+    href: 'https://attio.com',
+    icon: toolIcon('attio'),
+    darkInvert: true,
+  },
   { label: 'PostHog', href: 'https://posthog.com', icon: toolIcon('posthog') },
 ]
 
