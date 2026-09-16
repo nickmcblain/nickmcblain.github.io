@@ -224,7 +224,7 @@ function App() {
                           height={14}
                           loading="lazy"
                           className={cn(
-                            'h-3.5 w-3.5 rounded-[2px] grayscale transition group-hover/tool:grayscale-0',
+                            'h-3.5 w-3.5 rounded-[2px] object-contain grayscale transition group-hover/tool:grayscale-0',
                             tool.darkInvert && 'dark:invert',
                           )}
                         />
