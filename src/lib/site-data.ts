@@ -77,36 +77,39 @@ export const projects: Array<Project> = [
 
 export type SideProject = {
   title: string
-  repo: string
+  url?: string
   description: string
   tags: Array<string>
 }
 
 export const sideProjects: Array<SideProject> = [
   {
-    title: 'Otion',
-    repo: 'https://github.com/nickmcblain/otion',
+    title: 'GreenerGrass',
+    url: 'https://uk-ai.greenergrass.careers/',
     description:
-      'Mac + iOS inbox for people leaving Notion Mail. Snippets, AI auto-label, schedule send, booking links, send-separately. Gmail and Outlook stay the source of truth.',
-    tags: ['Tauri', 'Convex', 'Gmail API'],
+      'Job board for helping people in the UK find AI roles and improve their CV.',
+    tags: ['AI jobs', 'UK', 'Platform'],
+  },
+  {
+    title: 'Gump',
+    description:
+      'Native iOS and macOS inbox for people leaving Notion Mail. Snippets, AI auto-label, schedule send, booking links, send-separately. Gmail and Outlook stay the source of truth.',
+    tags: ['Swift', 'iOS', 'macOS'],
+  },
+  {
+    title: 'Surge',
+    description: 'TUI-themed desktop app for energy traders.',
+    tags: ['TUI', 'Desktop', 'Energy'],
   },
   {
     title: 'pdfx',
-    repo: 'https://github.com/nickmcblain/pdfx',
+    url: 'https://github.com/nickmcblain/pdfx',
     description:
       'Rust CLI that shrinks PDFs with hand-written DEFLATE and JPEG encoders. Emits only filters normal viewers already know; never returns a bigger file.',
     tags: ['Rust', 'CLI', 'Codecs'],
   },
   {
-    title: 'Climate Week NYC',
-    repo: 'https://github.com/nickmcblain/climateweek',
-    description:
-      'Every Climate Week NYC event, official and otherwise, refreshed daily by an agentic web-search pipeline on Convex.',
-    tags: ['Agents', 'Vite SSR', 'Convex'],
-  },
-  {
     title: 'Scrunch',
-    repo: 'https://github.com/nickmcblain/baby-steps',
     description:
       'iOS-first Expo app for logging feeds and nappies. One shared timeline for both parents, synced through Convex.',
     tags: ['Expo', 'Convex', 'iOS'],

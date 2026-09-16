@@ -282,14 +282,23 @@ function App() {
                   key={project.title}
                   className="grid gap-2 py-4 sm:grid-cols-[10rem_1fr] sm:gap-6"
                 >
-                  <a
-                    href={project.repo}
-                    className={cn('text-sm font-semibold', inlineLinkClasses)}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {project.title}
-                  </a>
+                  {project.url ? (
+                    <a
+                      href={project.url}
+                      className={cn('text-sm font-semibold', inlineLinkClasses)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {project.title}
+                    </a>
+                  ) : (
+                    <div>
+                      <p className="text-sm font-semibold">{project.title}</p>
+                      <p className="text-xs text-muted-foreground/70">
+                        Coming soon
+                      </p>
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {project.description}
