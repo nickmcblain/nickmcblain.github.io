@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import type { WritingItem } from '@/lib/writing'
+import { SiteFrame } from '@/components/site-frame'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArticleArt } from '@/components/writing/article-art'
 
@@ -8,30 +9,26 @@ const contentClasses =
 
 export function WritingTemplate({ post }: { post: WritingItem }) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-8">
-        <div className="flex items-center justify-between gap-4">
-          <Link
-            to="/writing"
-            className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground underline underline-offset-4"
-          >
-            Back to writing
-          </Link>
-        </div>
+    <SiteFrame className="gap-6">
+      <Link
+        to="/writing"
+        className="text-sm text-muted-foreground underline underline-offset-4"
+      >
+        Back to writing
+      </Link>
 
-        <Card className={post.image ? 'pt-0' : undefined}>
-          {post.image ? <ArticleArt src={post.image} alt="" /> : null}
-          <CardHeader>
-            <CardTitle>{new Date(post.date).toLocaleDateString()}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div
-              className={contentClasses}
-              dangerouslySetInnerHTML={{ __html: post.html }}
-            />
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+      <Card className={post.image ? 'pt-0 text-sm' : 'text-sm'}>
+        {post.image ? <ArticleArt src={post.image} alt="" /> : null}
+        <CardHeader>
+          <CardTitle>{new Date(post.date).toLocaleDateString()}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div
+            className={contentClasses}
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+        </CardContent>
+      </Card>
+    </SiteFrame>
   )
 }

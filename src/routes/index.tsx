@@ -9,10 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
 import { buttonVariants } from '@/components/ui/button'
-import { ShaderBackdrop } from '@/components/shader-backdrop'
 import { ArticleArt } from '@/components/writing/article-art'
+import { SiteFrame } from '@/components/site-frame'
 import { cn } from '@/lib/utils'
 import { writingItems } from '@/lib/writing'
 import {
@@ -43,18 +42,16 @@ const contactLinks = [
   { label: 'GitHub', href: 'https://github.com/nickmcblain', icon: GitHubIcon },
 ]
 
-const labelClasses =
-  'text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground'
+const labelClasses = 'text-xs text-muted-foreground'
 
 const inlineLinkClasses =
   'underline underline-offset-4 transition-colors hover:decoration-accent-spot'
 
+const navLinkClasses =
+  'text-muted-foreground transition-colors hover:text-foreground'
+
 function SectionTitle({ children }: { children: string }) {
-  return (
-    <h2 className="text-xl font-semibold">
-      <span className="text-accent-spot">//</span> {children}
-    </h2>
-  )
+  return <h2 className="text-lg font-semibold">{children}</h2>
 }
 
 export const Route = createFileRoute('/')({ component: App })
@@ -62,30 +59,6 @@ export const Route = createFileRoute('/')({ component: App })
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const featuredWriting = writingItems.slice(0, 3)
-  const navItems = navLinks.flatMap((link, index) => [
-    link.href.startsWith('/') ? (
-      <Link
-        key={link.label}
-        to={link.href}
-        className="transition-colors hover:text-accent-spot"
-      >
-        {link.label}
-      </Link>
-    ) : (
-      <a
-        key={link.label}
-        href={link.href}
-        className="transition-colors hover:text-accent-spot"
-      >
-        {link.label}
-      </a>
-    ),
-    index < navLinks.length - 1 ? (
-      <span key={`${link.label}-sep`} className="text-muted-foreground/60">
-        |
-      </span>
-    ) : null,
-  ])
 
   useEffect(() => {
     const stored = window.localStorage.getItem('theme')
@@ -111,319 +84,299 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen text-foreground">
-      <ShaderBackdrop theme={theme} />
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col gap-4 px-6 py-4">
-        <header className="flex flex-col gap-6">
-          <div className="flex flex-wrap items-center justify-between gap-6">
-            <div className="flex min-w-0 flex-1 items-center gap-4">
-              <img
-                src={profileImageSrc}
-                alt="Nick McBlain"
-                className="h-10 w-10 rounded-sm object-cover"
-              />
-              <nav className="flex min-w-0 flex-1 flex-wrap items-center justify-center gap-6 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-                {navItems}
-              </nav>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handleThemeToggle}
-                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                className={cn(
-                  buttonVariants({ variant: 'outline', size: 'icon-sm' }),
-                  'shrink-0',
-                )}
-              >
-                <span className="sr-only">Toggle theme</span>
-                {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-              </button>
-            </div>
+    <SiteFrame>
+      <header className="flex flex-col gap-4">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex min-w-0 items-center gap-3">
+            <img
+              src={profileImageSrc}
+              alt="Nick McBlain"
+              className="h-10 w-10 rounded-full object-cover"
+            />
+            <p className="truncate text-sm font-medium">Nick McBlain</p>
           </div>
-        </header>
-
-        <Separator />
-
-        <main className="flex flex-col gap-16">
-          <section
-            id="about"
-            className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]"
+          <button
+            type="button"
+            onClick={handleThemeToggle}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            className={cn(
+              buttonVariants({ variant: 'outline', size: 'icon-sm' }),
+              'shrink-0',
+            )}
           >
-            <div className="space-y-5">
-              <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                Product leader. Founder. Engineer.
-              </h1>
-              <p className="text-sm text-muted-foreground sm:text-base">
-                11+ years across engineering, growth and product leadership.
-                Today I build LLM-powered review agents at Lumion.{' '}
-                <Link to="/work" className={inlineLinkClasses}>
-                  Experience
-                </Link>
-                .
+            <span className="sr-only">Toggle theme</span>
+            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          </button>
+        </div>
+        <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          {navLinks.map((link) =>
+            link.href.startsWith('/') ? (
+              <Link key={link.label} to={link.href} className={navLinkClasses}>
+                {link.label}
+              </Link>
+            ) : (
+              <a key={link.label} href={link.href} className={navLinkClasses}>
+                {link.label}
+              </a>
+            ),
+          )}
+        </nav>
+      </header>
+
+      <main className="flex flex-col gap-12">
+        <section id="about" className="flex flex-col gap-5">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            Product leader. Founder. Engineer.
+          </h1>
+          <p className="text-base leading-relaxed text-muted-foreground">
+            11+ years across engineering, growth and product leadership. Today I
+            build LLM-powered review agents at Lumion.{' '}
+            <Link to="/work" className={inlineLinkClasses}>
+              Experience
+            </Link>
+            .
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {capabilities.map((item) => (
+              <Badge key={item} variant="secondary">
+                {item}
+              </Badge>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {contactLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={cn(
+                  buttonVariants({ variant: 'secondary', size: 'sm' }),
+                  'gap-2',
+                )}
+                rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+              >
+                <link.icon className="h-3.5 w-3.5" />
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <div className="flex flex-col gap-4 border-t border-border pt-5 text-sm">
+            <div>
+              <p className={labelClasses}>Focus</p>
+              <p>
+                RAG agents for energy infrastructure, LLM evals and fine-tuning,
+                0-1 go-to-market.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {capabilities.map((item) => (
-                  <Badge key={item} variant="secondary">
-                    {item}
-                  </Badge>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {contactLinks.map((link) => (
+            </div>
+            <div>
+              <p className={labelClasses}>Stack</p>
+              <p>{stack}</p>
+            </div>
+            <div>
+              <p className={labelClasses}>Based</p>
+              <p>Bristol, UK / New York, US</p>
+            </div>
+            <div>
+              <p className={labelClasses}>Current favorite tools</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {tools.map((tool) => (
                   <a
-                    key={link.label}
-                    href={link.href}
-                    className={cn(
-                      buttonVariants({ variant: 'secondary', size: 'sm' }),
-                      'gap-2 text-[0.6rem] uppercase tracking-[0.2em]',
-                    )}
-                    rel={
-                      link.href.startsWith('http') ? 'noreferrer' : undefined
-                    }
-                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    key={tool.label}
+                    href={tool.href}
+                    className="group/tool inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2 py-1 text-xs transition-colors hover:border-accent-spot"
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    <link.icon className="h-3.5 w-3.5" />
-                    {link.label}
+                    <img
+                      src={tool.icon}
+                      alt=""
+                      width={14}
+                      height={14}
+                      loading="lazy"
+                      className={cn(
+                        'h-3.5 w-3.5 rounded-[2px] object-contain grayscale transition group-hover/tool:grayscale-0',
+                        tool.darkInvert && 'dark:invert',
+                      )}
+                    />
+                    {tool.label}
                   </a>
                 ))}
               </div>
             </div>
-            <Card>
-              <CardContent className="space-y-4 text-sm text-muted-foreground">
-                <div>
-                  <p className={labelClasses}>Focus</p>
-                  <p className="text-foreground">
-                    RAG agents for energy infrastructure, LLM evals and
-                    fine-tuning, 0-1 go-to-market.
-                  </p>
-                </div>
-                <div>
-                  <p className={labelClasses}>Stack</p>
-                  <p className="text-foreground">{stack}</p>
-                </div>
-                <div>
-                  <p className={labelClasses}>Based</p>
-                  <p className="text-foreground">Bristol, UK / New York, US</p>
-                </div>
-                <div>
-                  <p className={labelClasses}>Current favorite tools</p>
-                  <div className="mt-1 flex flex-wrap gap-2">
-                    {tools.map((tool) => (
-                      <a
-                        key={tool.label}
-                        href={tool.href}
-                        className="group/tool inline-flex items-center gap-1.5 border border-border bg-background px-2 py-1 text-xs text-foreground transition-colors hover:border-accent-spot"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <img
-                          src={tool.icon}
-                          alt=""
-                          width={14}
-                          height={14}
-                          loading="lazy"
-                          className={cn(
-                            'h-3.5 w-3.5 rounded-[2px] object-contain grayscale transition group-hover/tool:grayscale-0',
-                            tool.darkInvert && 'dark:invert',
-                          )}
-                        />
-                        {tool.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+          </div>
+        </section>
 
-          <section id="startups" className="space-y-6">
-            <SectionTitle>Startups</SectionTitle>
-            <div className="grid gap-4 md:grid-cols-2">
-              {projects.map((project) => (
-                <Card key={project.title}>
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </CardContent>
-                  <CardFooter className="border-t border-border">
-                    {project.live ? (
-                      <a
-                        href={project.url}
-                        className={cn(
-                          'text-xs text-muted-foreground',
-                          inlineLinkClasses,
-                        )}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {project.urlLabel}
-                      </a>
-                    ) : (
-                      <span className="text-xs text-muted-foreground/70">
-                        {project.urlLabel}
-                      </span>
-                    )}
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </section>
-
-          <section id="open-source" className="space-y-6">
-            <SectionTitle>Open source & side projects</SectionTitle>
-            <div className="divide-y divide-border border-y border-border">
-              {sideProjects.map((project) => (
-                <div
-                  key={project.title}
-                  className="grid gap-2 py-4 sm:grid-cols-[10rem_1fr] sm:gap-6"
-                >
-                  {project.url ? (
+        <section id="startups" className="flex flex-col gap-4">
+          <SectionTitle>Startups</SectionTitle>
+          <div className="flex flex-col gap-3">
+            {projects.map((project) => (
+              <Card key={project.title} className="text-sm">
+                <CardHeader>
+                  <CardTitle>{project.title}</CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
+                </CardContent>
+                <CardFooter className="border-t border-border">
+                  {project.live ? (
                     <a
                       href={project.url}
-                      className={cn('text-sm font-semibold', inlineLinkClasses)}
+                      className={cn(
+                        'text-sm text-muted-foreground',
+                        inlineLinkClasses,
+                      )}
                       target="_blank"
                       rel="noreferrer"
                     >
-                      {project.title}
+                      {project.urlLabel}
                     </a>
                   ) : (
-                    <div>
-                      <p className="text-sm font-semibold">{project.title}</p>
-                      <p className="text-xs text-muted-foreground/70">
-                        Coming soon
-                      </p>
-                    </div>
+                    <span className="text-sm text-muted-foreground/70">
+                      {project.urlLabel}
+                    </span>
                   )}
-                  <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </section>
 
-          <section id="writing" className="space-y-6">
-            <SectionTitle>Writing</SectionTitle>
-            <div className="grid gap-4 md:grid-cols-3">
-              {featuredWriting.map((post) => (
-                <Card
-                  key={post.title}
-                  size="sm"
-                  className="group data-[size=sm]:pt-0"
-                >
-                  {post.image ? (
+        <section id="open-source" className="flex flex-col gap-4">
+          <SectionTitle>Open source & side projects</SectionTitle>
+          <div className="divide-y divide-border border-y border-border">
+            {sideProjects.map((project) => (
+              <div key={project.title} className="flex flex-col gap-2 py-4">
+                {project.url ? (
+                  <a
+                    href={project.url}
+                    className={cn('text-sm font-semibold', inlineLinkClasses)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {project.title}
+                  </a>
+                ) : (
+                  <div>
+                    <p className="text-sm font-semibold">{project.title}</p>
+                    <p className="text-xs text-muted-foreground/70">
+                      Coming soon
+                    </p>
+                  </div>
+                )}
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="writing" className="flex flex-col gap-4">
+          <SectionTitle>Writing</SectionTitle>
+          <div className="flex flex-col gap-3">
+            {featuredWriting.map((post) => (
+              <Card
+                key={post.title}
+                size="sm"
+                className="group text-sm data-[size=sm]:pt-0"
+              >
+                {post.image ? (
+                  <Link
+                    to="/writing/$slug"
+                    params={{ slug: post.slug }}
+                    aria-label={post.title}
+                  >
+                    <ArticleArt src={post.image} alt="" muted />
+                  </Link>
+                ) : null}
+                <CardHeader>
+                  <CardTitle>
                     <Link
                       to="/writing/$slug"
                       params={{ slug: post.slug }}
-                      aria-label={post.title}
+                      className={inlineLinkClasses}
                     >
-                      <ArticleArt src={post.image} alt="" muted />
+                      {post.title}
                     </Link>
-                  ) : null}
-                  <CardHeader>
-                    <CardTitle>
-                      <Link
-                        to="/writing/$slug"
-                        params={{ slug: post.slug }}
-                        className={inlineLinkClasses}
-                      >
-                        {post.title}
-                      </Link>
-                    </CardTitle>
-                    <p className="text-xs text-muted-foreground">{post.slug}</p>
-                    <CardDescription>{post.summary}</CardDescription>
-                  </CardHeader>
-                  <CardFooter className="border-t border-border text-xs text-muted-foreground">
-                    {post.date}
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-            <Link
-              to="/writing"
-              className={cn(
-                'text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground',
-                inlineLinkClasses,
-              )}
-            >
-              View all writing
-            </Link>
-          </section>
+                  </CardTitle>
+                  <p className="text-xs text-muted-foreground">{post.slug}</p>
+                  <CardDescription>{post.summary}</CardDescription>
+                </CardHeader>
+                <CardFooter className="border-t border-border text-xs text-muted-foreground">
+                  {post.date}
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+          <Link
+            to="/writing"
+            className={cn('text-sm text-muted-foreground', inlineLinkClasses)}
+          >
+            View all writing
+          </Link>
+        </section>
 
-          <section id="contact" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  <span className="text-accent-spot">//</span> Let's build
-                  something calm and effective.
-                </CardTitle>
-                <CardDescription>
-                  Reach out if you are building AI products, raising your
-                  quality bar, or want a second pair of hands on 0-1 strategy.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-xs text-muted-foreground">
-                I read and ship open source on{' '}
+        <section id="contact">
+          <Card className="text-sm">
+            <CardHeader>
+              <CardTitle>Let's build something calm and effective.</CardTitle>
+              <CardDescription>
+                Reach out if you are building AI products, raising your quality
+                bar, or want a second pair of hands on 0-1 strategy.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-muted-foreground">
+              I read and ship open source on{' '}
+              <a
+                href="https://github.com/nickmcblain"
+                className={cn('text-foreground', inlineLinkClasses)}
+                target="_blank"
+                rel="me noreferrer"
+              >
+                GitHub
+              </a>
+              .
+            </CardContent>
+            <CardFooter className="flex flex-wrap gap-2 border-t border-border">
+              {contactLinks.map((link) => (
                 <a
-                  href="https://github.com/nickmcblain"
-                  className={cn('text-foreground', inlineLinkClasses)}
-                  target="_blank"
-                  rel="me noreferrer"
+                  key={link.label}
+                  href={link.href}
+                  className={cn(
+                    buttonVariants({ variant: 'default', size: 'sm' }),
+                    'gap-2',
+                  )}
+                  rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
                 >
-                  GitHub
+                  <link.icon className="h-3.5 w-3.5" />
+                  {link.label}
                 </a>
-                .
-              </CardContent>
-              <CardFooter className="flex flex-wrap gap-2 border-t border-border">
-                {contactLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className={cn(
-                      buttonVariants({ variant: 'default', size: 'sm' }),
-                      'gap-2 text-[0.6rem] uppercase tracking-[0.2em]',
-                    )}
-                    rel={
-                      link.href.startsWith('http') ? 'noreferrer' : undefined
-                    }
-                    target={link.href.startsWith('http') ? '_blank' : undefined}
-                  >
-                    <link.icon className="h-3.5 w-3.5" />
-                    {link.label}
-                  </a>
-                ))}
-              </CardFooter>
-            </Card>
-          </section>
-        </main>
+              ))}
+            </CardFooter>
+          </Card>
+        </section>
+      </main>
 
-        <Separator />
-
-        <footer className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
-          <span>© 2026 Nick McBlain</span>
-          <a href="#about" className={inlineLinkClasses}>
-            Back to top
-          </a>
-        </footer>
-      </div>
-    </div>
+      <footer className="flex items-center justify-between gap-2 border-t border-border pt-6 text-sm text-muted-foreground">
+        <span>© 2026 Nick McBlain</span>
+        <a href="#about" className={inlineLinkClasses}>
+          Back to top
+        </a>
+      </footer>
+    </SiteFrame>
   )
 }
 
