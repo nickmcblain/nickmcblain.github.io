@@ -1,4 +1,6 @@
 node_modules
+public/audio/*.mp3
+public/audio/manifest.json
 .DS_Store
 *.local
 count.txt

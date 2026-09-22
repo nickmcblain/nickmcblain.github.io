@@ -1,5 +1,4 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -22,16 +21,6 @@ import {
   tools,
 } from '@/lib/site-data'
 
-const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '/work' },
-  { label: 'Startups', href: '#startups' },
-  { label: 'Writing', href: '#writing' },
-  { label: 'Contact', href: '#contact' },
-]
-
-const profileImageSrc = `${import.meta.env.BASE_URL}profile.jpeg`
-
 const contactLinks = [
   { label: 'Email', href: 'mailto:hey@nickmc.io', icon: MailIcon },
   {
@@ -47,9 +36,6 @@ const labelClasses = 'text-xs text-muted-foreground'
 const inlineLinkClasses =
   'underline underline-offset-4 transition-colors hover:decoration-accent-spot'
 
-const navLinkClasses =
-  'text-muted-foreground transition-colors hover:text-foreground'
-
 function SectionTitle({ children }: { children: string }) {
   return <h2 className="text-lg font-semibold">{children}</h2>
 }
@@ -57,72 +43,10 @@ function SectionTitle({ children }: { children: string }) {
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const featuredWriting = writingItems.slice(0, 3)
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem('theme')
-    const systemPrefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches
-    const initialTheme =
-      stored === 'light' || stored === 'dark'
-        ? stored
-        : systemPrefersDark
-          ? 'dark'
-          : 'light'
-
-    setTheme(initialTheme)
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark')
-  }, [])
-
-  const handleThemeToggle = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark'
-    setTheme(nextTheme)
-    document.documentElement.classList.toggle('dark', nextTheme === 'dark')
-    window.localStorage.setItem('theme', nextTheme)
-  }
 
   return (
     <SiteFrame>
-      <header className="flex flex-col gap-4">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex min-w-0 items-center gap-3">
-            <img
-              src={profileImageSrc}
-              alt="Nick McBlain"
-              className="h-10 w-10 rounded-full object-cover"
-            />
-            <p className="truncate text-sm font-medium">Nick McBlain</p>
-          </div>
-          <button
-            type="button"
-            onClick={handleThemeToggle}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className={cn(
-              buttonVariants({ variant: 'outline', size: 'icon-sm' }),
-              'shrink-0',
-            )}
-          >
-            <span className="sr-only">Toggle theme</span>
-            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-          </button>
-        </div>
-        <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-          {navLinks.map((link) =>
-            link.href.startsWith('/') ? (
-              <Link key={link.label} to={link.href} className={navLinkClasses}>
-                {link.label}
-              </Link>
-            ) : (
-              <a key={link.label} href={link.href} className={navLinkClasses}>
-                {link.label}
-              </a>
-            ),
-          )}
-        </nav>
-      </header>
-
       <main className="flex flex-col gap-12">
         <section id="about" className="flex flex-col gap-5">
           <h1 className="text-2xl font-semibold tracking-tight">
@@ -420,41 +344,6 @@ function GitHubIcon({ className }: { className?: string }) {
       fill="currentColor"
     >
       <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48v-1.68c-2.78.6-3.37-1.34-3.37-1.34-.46-1.17-1.12-1.48-1.12-1.48-.92-.62.07-.6.07-.6 1.02.07 1.56 1.05 1.56 1.05.9 1.56 2.36 1.11 2.94.85.1-.65.35-1.1.64-1.35-2.22-.25-4.55-1.11-4.55-4.95 0-1.1.39-2 1.04-2.7-.1-.25-.45-1.27.1-2.65 0 0 .85-.27 2.8 1.03a9.5 9.5 0 0 1 5.1 0c1.95-1.3 2.8-1.03 2.8-1.03.55 1.38.2 2.4.1 2.65.65.7 1.04 1.6 1.04 2.7 0 3.85-2.34 4.7-4.57 4.95.36.3.68.9.68 1.84v2.72c0 .26.18.58.68.48A10 10 0 0 0 12 2Z" />
-    </svg>
-  )
-}
-
-function SunIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-    </svg>
-  )
-}
-
-function MoonIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
     </svg>
   )
 }

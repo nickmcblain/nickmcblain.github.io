@@ -21,7 +21,7 @@ and accelerate planning and operations with AI agents.
 
 This is the context for every tool choice below.
 
-## // The rule I follow
+## The rule I follow
 
 I choose tools that are simple and do the exact thing I need.
 
@@ -42,7 +42,7 @@ try AI first, unless the task involves sensitive data.
 I do not want to be the person who says "AI can't do this"
 without testing it.
 
-## // Daily tools
+## Daily tools
 
 ChatGPT is my AI board of directors.
 
@@ -94,7 +94,7 @@ I do not ask Codex to do broad, massive changes to Lumion.
 
 I ask it to solve a precise problem, then I verify and iterate.
 
-## // The AI board prompt
+## The AI board prompt
 
 The board is a set of specific roles and voices I can call on inside ChatGPT.
 
@@ -114,7 +114,7 @@ Sometimes I ask a single role to answer and keep the rest silent.
 The shared context is always the same:
 energy infrastructure developers and operators.
 
-## // Weekly and monthly tools
+## Weekly and monthly tools
 
 Perplexity is my weekly research partner.
 
@@ -135,7 +135,7 @@ and an open source 5-a-side football management web app (coming soon).
 I plan to write about how these are built,
 but for now they are a consistent sandbox to keep my edge sharp.
 
-## // What I am not using
+## What I am not using
 
 AI SDR and sales agent tools still feel like fake numbers to me.
 
@@ -146,7 +146,7 @@ That could be a symptom of our stage.
 
 But right now the signal is not there.
 
-## // The gap I want filled
+## The gap I want filled
 
 I live inside the Notion ecosystem for docs, email, and calendar.
 
@@ -155,7 +155,7 @@ and automatic scheduling, closer to what Fyxer and Motion do.
 
 That would remove the last bit of manual admin work I still carry.
 
-## // A tool I loved, and why I moved on
+## A tool I loved, and why I moved on
 
 I was a big supporter of Claude Code through the second half of 2025,
 even the loudest voice for it in my ERA29 cohort.
