@@ -17,7 +17,7 @@ What changed is the shape of the work.
 
 The last couple of months were less about picking a smarter chat window, and more about building an environment agents can live in without me babysitting every turn.
 
-## // What I was doing with Codex
+## What I was doing with Codex
 
 For a stretch I leaned hard on OpenAI Codex.
 
@@ -41,7 +41,7 @@ That context lived in my head, in Linear, in Granola notes, and in half-updated 
 
 Every new session paid the tax again.
 
-## // Why Cursor stuck
+## Why Cursor stuck
 
 I moved the day-to-day coding loop into Cursor.
 
@@ -61,7 +61,7 @@ Skills and workflows turn “how we do UI” or “how we unslop a draft” into
 
 That is the seat Codex was missing for me: durable process, not just durable code edits.
 
-## // Bun is the base layer
+## Bun is the base layer
 
 One unlock that is easy to miss if you only watch model launches: Bun.
 
@@ -87,7 +87,7 @@ Bun is the boring part of that answer.
 
 It is also the part that compounds.
 
-## // Grok Bot is the other half
+## Grok Bot is the other half
 
 Grok Bot became the operating layer outside the editor.
 
@@ -123,7 +123,7 @@ Ship the dumb path on a real pack first.
 
 Persona chrome can wait.
 
-## // The lesson under the tools
+## The lesson under the tools
 
 The tooling shift forced a clearer rule.
 
@@ -158,7 +158,7 @@ PDFs to structured truth.
 
 The last few months just made the consumer side real: the consumers are agents that run while I sleep, or while I am in a customer call.
 
-## // Closed enums beat vibes
+## Closed enums beat vibes
 
 One concrete learning from shipping reviews: vocabulary is a product decision.
 
@@ -176,7 +176,7 @@ If you pick the latest file by timestamp instead of the selected version, the ag
 
 Data structure bugs become agent hallucinations with better manners.
 
-## // The exception list is the interface
+## The exception list is the interface
 
 The deliverable that matters is not a chat transcript.
 
@@ -194,7 +194,7 @@ That shape is also what GTM, social, and engineering can share as one locked sen
 
 When the print lock drifts, the agents drift with it.
 
-## // Open Knowledge Format
+## Open Knowledge Format
 
 Google’s Open Knowledge Format formalizes the pattern people were already improvising with Obsidian vaults, `AGENTS.md` files, and LLM wikis.
 
@@ -244,7 +244,7 @@ Grok Bot memory is the same pattern in miniature: profile facts, dated logs, hum
 
 OKF is the portable contract for that instinct.
 
-## // What this means inside Lumion
+## What this means inside Lumion
 
 Lumion’s product is already a knowledge problem dressed as a compliance product.
 
@@ -290,7 +290,7 @@ Passwords stay human.
 
 If you skip that and let an agent “just use the portal,” you inherit every secret into screenshots, DOM dumps, and logs.
 
-## // What I am not claiming
+## What I am not claiming
 
 I am not claiming we “solved interconnection with a wiki.”
 
@@ -314,7 +314,7 @@ Review first.
 
 Generation and unsupervised filing can wait until the exception list earns trust.
 
-## // Practical habits that survived the switch
+## Practical habits that survived the switch
 
 Give agents a precise target.
 
@@ -330,7 +330,7 @@ If a process happens twice, turn it into a skill or a routine before you rely on
 
 Lock one product sentence and make every agent and every post obey it.
 
-## // What to check later
+## What to check later
 
 If you are reading this in a few months, ask three questions.
 
@@ -346,7 +346,7 @@ The tools will keep changing.
 
 The bet that compounds is still the same: structured truth first, agents second.
 
-## // What I’m building on the side right now
+## What I’m building on the side right now
 
 Lumion is the job.
 

@@ -33,6 +33,13 @@ jobs:
       - name: Install
         run: bun install --frozen-lockfile
 
+      - name: Generate article audio
+        run: bun run audio
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          ELEVENLABS_MODEL_ID: ${{ secrets.ELEVENLABS_MODEL_ID }}
+
       - name: Build
         run: bun run build
         env:

@@ -28,6 +28,7 @@ export const tools: Array<Tool> = [
     icon: toolIcon('grok-bot'),
   },
   { label: 'Codex', href: 'https://openai.com/codex', icon: toolIcon('codex') },
+  { label: 'Jev', href: 'https://typesafe.ai', icon: toolIcon('jev') },
   { label: 'Bun', href: 'https://bun.sh', icon: toolIcon('bun') },
   { label: 'Granola', href: 'https://granola.so', icon: toolIcon('granola') },
   { label: 'Linear', href: 'https://linear.app', icon: toolIcon('linear') },
