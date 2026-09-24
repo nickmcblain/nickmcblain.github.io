@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 import { ArticleArt } from '@/components/writing/article-art'
+import { GitHubContributionGraphs } from '@/components/github-contribution-graphs'
 import { SiteFrame } from '@/components/site-frame'
 import { cn } from '@/lib/utils'
 import { writingItems } from '@/lib/writing'
@@ -168,6 +169,11 @@ function App() {
               </Card>
             ))}
           </div>
+        </section>
+
+        <section id="contributions" className="flex flex-col gap-4">
+          <SectionTitle>GitHub contributions</SectionTitle>
+          <GitHubContributionGraphs />
         </section>
 
         <section id="open-source" className="flex flex-col gap-4">

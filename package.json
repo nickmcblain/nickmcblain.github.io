@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "audio": "bun scripts/generate-writing-audio.ts",
+    "contributions": "bun scripts/fetch-github-contributions.ts",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -29,6 +30,7 @@
     "marked": "^17.0.1",
     "nitro": "latest",
     "react": "^19.2.0",
+    "react-activity-calendar": "^3.2.1",
     "react-dom": "^19.2.0",
     "shadcn": "^3.6.3",
     "tailwind-merge": "^3.4.0",

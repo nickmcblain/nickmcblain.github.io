@@ -1,3 +1,14 @@
+export const githubProfiles = [
+  {
+    username: 'nickmcblain',
+    href: 'https://github.com/nickmcblain',
+  },
+  {
+    username: 'nickmc-lumion',
+    href: 'https://github.com/nickmc-lumion',
+  },
+] as const
+
 export const capabilities = [
   'AI agents & LLM products',
   'RAG & evals',

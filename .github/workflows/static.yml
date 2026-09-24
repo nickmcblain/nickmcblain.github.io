@@ -40,6 +40,9 @@ jobs:
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
           ELEVENLABS_MODEL_ID: ${{ secrets.ELEVENLABS_MODEL_ID }}
 
+      - name: Fetch GitHub contributions
+        run: bun run contributions
+
       - name: Build
         run: bun run build
         env:
